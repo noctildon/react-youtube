@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <title>My first React App</title>
+</head>
+
+<body>
+
+  <div id='app'></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      state = {
+        name: 'Jay',
+        age: 30
+      }
+      handleCopy = (e) => {
+        console.log('You did copy the text')
+      }
+      handleMouseOver = (e) => {
+        console.log(e)
+        console.log(this.state) // 若要this指向這個component,就要用arrow function
+      }
+      handleClick = (e) => {
+        this.setState({ name: 'Will' }) // 修改state data
+        console.log(e.target)
+      }
+      handleChange = (e) => {
+        // 以input內的值修改name
+        this.setState({ name: e.target.value })
+      }
+      handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('form submitted',this.state.name)
+      }
+      render(h) {
+        return (
+          // only root element on top,class不能用,要用className
+          <div className='app-content'>
+            <h1>
+              Hello world
+            </h1>
+            <p>{Math.random() * 10}</p>
+            <p> Name : {this.state.name}. Age : {this.state.age}</p>
+            <button onClick={this.handleClick}>Click Me</button>
+            <button onMouseOver={this.handleMouseOver}>Hover Me</button>
+            <p onCopy={this.handleCopy}>Think twice, do once</p>
+            <hr/>
+
+            <form onSubmit={this.handleSubmit}>
+              <input type='text' onChange={this.handleChange}/>
+              <button>Submit</button>
+            </form>
+          </div>
+        )
+      }
+    }
+
+    // 第一個參數加入上面定義的App,第二個指定要針對哪個element
+    ReactDOM.render(<App/>, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

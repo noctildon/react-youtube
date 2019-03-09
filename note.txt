@@ -1,0 +1,20 @@
+先從https://reactjs.org/docs/cdn-links.html取出CDN script然後嵌入到index.html的head tag
+再https://babeljs.io/setup#installation 引入babel
+
+在React.Component的物件裡,一定要有render function,其中function會return一些動態的html內容,而root element只能有一個,並且用className取代html的class
+
+變數用{}包住,用state來定義資料
+
+用chrome extension: React developer tools來看browser裡面的資料
+
+可能需要安裝react script globally: npm install -g react-scripts
+npx create-react-app [專案名稱]
+
+如何import外部的react?
+  import Students from './students'
+  <Students />
+
+帶入一些參數 : <Students name='Jay' age='20' />
+   <Students students={this.state.students} /> 以students為key,this.state.students為value傳data
+
+用npm start來啟動react server
